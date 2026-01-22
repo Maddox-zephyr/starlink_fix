@@ -1,112 +1,69 @@
-#!/usr/bin/env python3
+#!env /usr/bin/python3
+
 import asyncio
-from aio_timers import Timer
 import websockets
 import json
 import dict_digger
-import math
-import threading, time
-import paho.mqtt.client as mqtt
+from math import radians, cos, sin, asin, sqrt
 
-# lat/lon in decimal degrees
-starlink_lat = 0.0
-starlink_lon = 0.0
-ais_gps_lat = 0.0
-ais_gps_lon = 0.0
-plotter_gps_lat = 0.0
-plotter_gps_lon = 0.0
+def haversine(lat1, lon1, lat2, lon2):
+    R = 3959.87433 # this is in miles. For Earth radius in kilometers use 6372.8 km
+    dLat = radians(lat2 - lat1)
+    dLon = radians(lon2 - lon1)
+    lat1 = radians(lat1)
+    lat2 = radians(lat2)
+    a = sin(dLat/2)**2 + cos(lat1)*cos(lat2)*sin(dLon/2)**2
+    c = 2*asin(sqrt(a))
+    return R * c
 
-#uri = "ws://192.168.1.116:80/signalk/v1/stream?subscribe=self"
-uri = "ws://192.168.1.116:80/signalk/v1/stream?subscribe=none"
+async def subscribe_with_source():
+    # URI for your specific server address
+    uri = "ws://192.168.1.116:80/signalk/v1/stream?subscribe=none"
 
-subscribe = {
-  "context": "vessels.self",
-  "subscribe": [
-    {
-      "path": "environment.wind.speedApparent",
-      "format": "delta",
-      "minPeriod": 10000
-    },
-    {
-      "path": "environment.wind.directionTrue",
-      "format": "delta",
-      "minPeriod": 10000
-    },
-    {
-      "path": "navigation.courseOverGroundTrue",
-      "format": "delta",
-      "minPeriod": 10000
-    },
-    {
-      "path": "navigation.speedOverGround",
-      "format": "delta",
-      "minPeriod": 10000
-    },
-    {
-      "path": "environment.inside.temperature",
-      "format": "delta",
-      "minPeriod": 10000
-    },
-    {
-      "path": "environment.outside.temperature",
-      "format": "delta",
-      "minPeriod": 10000
-    }
-  ]
-}
-
-def signalk_parse(msg):
-  global plotter_gps_lat, plotter_gps_lon
-  global ais_gps_lat, ais_gps_lon
-  global starlink_lat, starlink_lon
-
-  try:
-    load_json = json.loads(msg)
-    updates = dict_digger.dig(load_json, 'updates', 0)
-    values = dict_digger.dig(updates, 'values', 0)
-    path = values["path"]
-#    print("path: ", path)
-    if path == "navigation.courseOverGroundTrue":
-      path = "COG: "
-      COG = round(math.degrees(values["value"]),1)
-      coglist.append(COG)
-      #print("coglist: ", coglist)
-      #print(path, COG, "degrees", updates["timestamp"],"\n")
-    elif path == "environment.wind.speedApparent":
-      path = "TWS: "
-      TWS = round(values["value"] * 1.94384, 1)
-      twslist.append(TWS)
-      #print(path, TWS, "knots", updates["timestamp"],"\n")
-    elif path == "environment.wind.directionTrue":
-      path = "TWD: "
-      TWD = round(math.degrees(values["value"]),1)
-      twdlist.append(TWD)
-      #print(path, TWD, "degrees", updates["timestamp"],"\n")
-    elif path == "navigation.speedOverGround":
-      path = "SOG: "
-      SOG = round(values["value"] * 1.94384, 1)
-      soglist.append(SOG)
-      #print(path, SOG, "knots", updates["timestamp"],"\n")
-    elif path == "environment.inside.temperature":
-      path = "Cabin Temp: "
-      CabinTemp = round(((values["value"] - 273.15) * 9/5) +32, 1)
-      #print(path, CabinTemp, "F", updates["timestamp"],"\n")
-    elif path == "environment.outside.temperature":
-      path = "Cockpit Temp: "
-      CockpitTemp = round(((values["value"] - 273.15) * 9/5) +32, 1)
-      #print(path, CockpitTemp, "F", updates["timestamp"],"\n")
-    return
-  except:
-    print("\nnot a frame we were looking for")
-
-async def sigk(uri):
     async with websockets.connect(uri) as websocket:
-        await websocket.send(json.dumps(subscribe))
-        async for delta in websocket:
-          signalk_parse(delta)
+        # Subscribe to position with instant updates
+        msg = {
+            "context": "vessels.self",
+            "subscribe": [{"path": "navigation.position",
+                           "policy": "instant"}]
+            #               "minPeriod": 1000}]
+        }
+        await websocket.send(json.dumps(msg))
 
-#
-# Main 
-#
+        gps_lat = 0.0
+        gps_lon = 0.0
+        starlink_lat = 0.0
+        starlink_lon = 0.0
 
-asyncio.get_event_loop().run_until_complete(sigk(uri))
+        while True:
+            try:
+                message = await websocket.recv()
+                data = json.loads(message)
+
+                if "updates" in data:
+                    for update in data["updates"]:
+                        # print (update)
+
+                        if (dict_digger.dig(update, "source", "type") == "NMEA2000"):
+                            gps_lat = dict_digger.dig(update, "values", 0, "value", "latitude")
+                            gps_lon = dict_digger.dig(update, "values", 0, "value", "longitude")
+                        elif (dict_digger.dig(update, "$source") == "signalk-starlink"):
+                            starlink_lat = dict_digger.dig(update, "values", 0, "value", "latitude")
+                            starlink_lon = dict_digger.dig(update, "values", 0, "value", "longitude")
+                            if (starlink_lat is not None and starlink_lon is not None
+                                and gps_lat is not None and gps_lon is not None):
+                                print ("Starlink Lat: ", starlink_lat, "Lon: ", starlink_lon)
+                                print ("GPS Lat: ", gps_lat, "Lon: ", gps_lon)
+                                distance = haversine(gps_lat, gps_lon, starlink_lat, starlink_lon)
+                                print("Distance between GPS and Starlink: ", distance, "miles\n")
+                        else:
+                            print("Failed to parse source info")
+                            print (update)
+
+            except Exception as e:
+                print(f"Error: {e}")
+                break
+
+if __name__ == "__main__":
+    asyncio.run(subscribe_with_source())
+
