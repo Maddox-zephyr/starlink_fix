@@ -80,7 +80,10 @@ async def subscribe_with_source():
                                 #print ("GPS Lat: ", gps_lat, "Lon: ", gps_lon)
                                 #print("Distance between GPS and Starlink: ", distance, "miles\n")
                             else:
-                                print("Incomplete position data:")
+                                #print("Incomplete position data:")
+                                #print("GPS Lat: ", gps_lat, "Lon: ", gps_lon)
+                                #print("Starlink Lat: ", starlink_lat, "Lon: ", starlink_lon)
+                                pass
                         else:
                             print("Failed to parse source info: ",)
                             print (update)
