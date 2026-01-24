@@ -12,20 +12,21 @@ messages. This website is intended as a reference to bring them up to speed.
 
 ## PredictWind
 
-PredictWind is working on new release for their datahub that
-can read the starlink position information and provide that as a source
-on a NMEA 2000 network (or SeatalkNG network). This is meant to give us
-a choice to use that with our chartplotters in the event we encounter
-denial of standard GPS due to jamming or spoofing or any other GPS
-outage. I volunteered to be their initial test and that will hopefully
+PredictWind is working on new release for their datahub that can read
+the starlink position information and provide that as a source on a NMEA
+2000 network (or SeatalkNG network). This is meant to give us a choice
+to use that with our chartplotters in the event we encounter denial of
+standard GPS due to jamming or spoofing or any other GPS outage. Bruce
+(Wild Orchid) volunteered to be their initial test and that will hopefully
 happen in the next few days.
 
 ## Finn's Starlink -> OpenCPN project
 
-Finn (member of this group) has shared a GitHub archive that will allow
-a computer (laptop, raspberry pi, etc.) to run a program that extracts
-the starlink position and provides it to other Nav programs (OpenCPN
-for example). This does not require a datahub.
+Finn (member of the Starlink datahub positioning discussion WhatsApp
+group) has shared a GitHub archive that will allow a computer (laptop,
+raspberry pi, etc.) to run a program that extracts the starlink position
+and provides it to other Nav programs (OpenCPN for example). This does
+not require a datahub.
 
 ## Signalk alerting project
 
