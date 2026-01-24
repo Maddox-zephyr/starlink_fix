@@ -64,16 +64,16 @@ installation may be needed.
 Follow the instructions at [this page](starlink_setup.html) to configure your
 Starlink antenna to make its data available on the local network.
 
-1. Starlink setup
-2. Signalk setup
-3. diff_starlink_gps setup
-4. send_gps_status_email setup
-5. system operation
-6. FAQ
-
 # OpenCPN setup
 
+Follow the instructions at [this page](opencpn_setup.html) to configure your
+Starlink location data to be forwarded to OpenCPN
 
+# GPS Loss-Alerting setup
+
+Follow the instructions at [this page](gps_loss_alerting_setup.html) to configure
+your Starlink location to be compared to GPS, and the comparison results printed
+and sent to email if they don't match.
 
 # The GitHub repo
 
@@ -94,3 +94,6 @@ Create an account if you don't have one at https://github.com and log in, and
 you'll be more powerful, and be able to contribute to the happiness of your
 fellow cruisers.
 
+# Future sections
+1. Signalk setup
+2. FAQ
