@@ -3,6 +3,8 @@
 These pages describe various ways to use Starlink for obtaining a position fix in GPS-denied environments. The pages and programs are oriented toward cruising
 sailboats.
 
+This site and associated GitHub repo is NOT intended to replace the WhatsApp group. WhatsApp is a useful discussion forum for general communication on this topic. Rather, this site is intended to preserve important material and software that those who join after a given WhatsApp post has been made can get the info.
+
 # Background
 
 Many new members of the Cruiser Connect community, and especially the
@@ -18,7 +20,7 @@ raspberry pi, etc.) to run a program that extracts the starlink position
 and provides it to other Nav programs (OpenCPN for example). This does
 not require a datahub.
 
-### Signalk alerting project
+### GPS loss-alerting project
 
 A krafty kiwi krew member on Wild Orchid is working on a program that can
 pull starlink and NMEA positions from signalk and compare them and send
