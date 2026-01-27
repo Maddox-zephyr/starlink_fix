@@ -27,3 +27,10 @@ should see a data display similar to that below.
 Look at the data and confirm there is a "location" section. This confirms
 that the Starlink antenna is making location data available on the local
 network.
+
+## Read your Starlink position fix from the app
+
+Open the Starlink app on your phone and view the debug data. You will see
+Starlink's position fix as shown below.
+
+![Starlink debug data](images/Starlink_app_location.png)

@@ -1,4 +1,4 @@
-# Starlink_fix overview
+# Starlink_position overview
 
 These pages describe various ways to use Starlink for obtaining a position fix in GPS-denied environments. The pages and programs are oriented toward cruising
 sailboats.
@@ -83,7 +83,7 @@ and sent to email if they don't match.
 # The GitHub repo
 
 The capabilities described above are supported by various software and documentation
-which is stored on Github at [Maddox-zephyr/starlink_fix](https://github.com/Maddox-zephyr/starlink_fix).
+which is stored on Github at [Maddox-zephyr/starlink_position](https://github.com/Maddox-zephyr/starlink_position).
 That repo also has tabs for various purposes:
 
 - A wiki tab. The wiki is open and can be read and updated by anyone with a GitHub

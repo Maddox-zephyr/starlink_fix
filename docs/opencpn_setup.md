@@ -14,14 +14,14 @@ Make sure you have python installed (a quick google search should help)
 and allow local location access in Starlink. 
 
 Make sure you have enabled location access on the Starlink antenna by
-following the steps on [this page](https://maddox-zephyr.github.io/starlink_fix/starlink_setup.html)
+following the steps on [this page](https://maddox-zephyr.github.io/starlink_position/starlink_setup.html)
 
 ## Get the OpenCPN-Starlink zip file
 
-- Send your browser to the [URL to download the OpenCPN-Starlink zip file](https://github.com/Maddox-zephyr/starlink_fix/blob/main/OpenCPN/Starlink_data_to_NMEA.zip)
-- Click the three dots to the right of the file name and select **Download** to
+- Send your browser to the [URL to download the Starlink_data_to_NMEA.zip file](https://github.com/Maddox-zephyr/starlink_position/releases)
+- Click on the Starlink_data_to_NMEA.zip file to
 download the zip file to your computer
-- Move the folder to any place you want and unzip it.
+- Move the file to any place you want on your computer and unzip it into a folder.
 
 ## Configure the Starlink->OpenCPN bridge software
 
