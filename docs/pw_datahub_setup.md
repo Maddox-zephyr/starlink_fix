@@ -4,7 +4,7 @@ Using PredictWind's Datahub with Starlink involves installing a Datahub
 plugin that forwards Starlink's location data as NMEA data that can
 be consumed by Raymarine chart plotters or OpenCPN.
 
-Here is a step by step guide for configuring the
+Here is a step by step guide for setting up the
 Starlink->PW Datahub->Chartplotter configuration.
 
 ### Pre-requisites
@@ -14,7 +14,7 @@ Starlink->PW Datahub->Chartplotter configuration.
 
 # Update Datahub
 
-You will need to update the firmware on your Datahub. Login and navigate to services->settings->software update. Push the alternate button.. select version 4.41. this is a pre-release version of the software that has support for Starlink GPS (SLGPS). You will see something like:
+You will need to update the firmware on your Datahub. Login and navigate to services->settings->software update. Push the alternate button. Select version 4.41. this is a pre-release version of the software that has support for Starlink GPS (SLGPS). You will see something like:
 
 ```
 version 4.41
@@ -22,11 +22,11 @@ version 4.41
 ```
 in the change log. 
 
-Once the upgrade completes login to the unit and navigate to 
+Once the upgrade completes, login to the unit and navigate to 
 internet->starlink.
 
 You should see an option for enabling Starlink position.
-Enable the option and then hit save & apply...
+Enable the option and then hit save & apply.
 
 After the page refreshes you will see two new tabs under
 internet->starlink. They contain:
