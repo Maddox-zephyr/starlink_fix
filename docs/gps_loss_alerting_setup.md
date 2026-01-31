@@ -9,6 +9,17 @@ status emails.
 
 ## Signalk configuration
 
+To add the signalk-starlink plugin to your signalk, login to signalk (top right hand three 
+horizontal lines, then click on Appstore, then Available.  You will find the plugin here.
+
+Next step is to configure the signalk-starlink plugin by going to Server, then Plugin Config, and 
+look for Starlink. You will want to enable it, then check the option for "Use Starlink as a GPS
+source (requires enabling access on local network)." 
+
+Restart signalk, and then using the Data Browser for siganlk, look for the path 
+navigation.position.  You probably have multiple of these, but one should have 
+signalk-starlink in the far right Source column.
+
 Add the Starlink plugin into Signalk and configure Signalk to pull location
 data from Starlink, and to output it.
 
