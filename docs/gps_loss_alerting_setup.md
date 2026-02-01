@@ -9,6 +9,10 @@ status emails.
 
 ## Signalk configuration
 
+Note: signalk standard/default convention is to have 192.168.1.xxx:3000 as the path to 
+control/view signalk. Port 3000 was already taken on my server with a grafana page, so I changed 
+the default to port 80 for my signalk.
+
 To add the signalk-starlink plugin to your signalk, login to signalk (top right hand three 
 horizontal lines) [view login image](images/Signalk_login.png), then click on Appstore, then Available.  You will find the plugin here.
 
