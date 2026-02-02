@@ -94,13 +94,9 @@ in parentheses needs to be the image filename relative to the docs directory.
 # GitHub repos
 
 GitHub contains the master copy of this repo in the cloud, including its
-entire history.  Maintainers can make changes to the master copy in one
-of three ways:
-
-1. Quick and Dirty: Directly edit a file on the GitHub repo web page
-2. Best Practice: Edit a local copy on a branch, merge the branch to main,
-then push your updated main to the master copy in the cloud.
-3. Bespoke workflow for starlink_position
+entire history.  Maintainers should make changes to the master copy of
+the repo using the bespoke workflow for starlink_position described
+below
 
 ## Collaboration on GitHub
 
@@ -110,22 +106,24 @@ This is the purpose of the *Bespoke Workflow for starlink_position* - it
 states how we need to all behave in order to not step on each other's toes,
 while not unduly burdening those unfamiliar with git practices.
 
-The **Quick & Dirty** workflow is adequate if you're making a minor change
+The **Bespoke Workflow for starlink_position** is what's used when
+updating this repo. It offers maintainers a choice of the *Quick &
+Dirty* procedures or the *Best Practice* process, and uses WhatsApp to
+acquire or release the right to edit *main* exclusively.
+
+The **Quick & Dirty** procedures are fine for making moderate-size
 to a file that you expect you're the only one working on. You directly change
 the repo in the cloud. It is simple, but it can fail if someone else
 makes a change between when you start editing and when you want to
-commit your changes. This should not happen if you're using the
+commit your changes. This should not happen if maintainers are all using the
 *Bespoke workflow for starlink_position* described below.
 
-The **Best Practice** workflow is best when you are going to be working
-on a line of development for some time, during which others may make
+The **Best Practice** procedures is good when you are going to be working
+on a line of development for some time, during which time others may make
 changes in the repo. It is more complicated, involving local and cloud
 repos and getting changes synced between the two. It requires considerable
-familiarity with git and GitHub.
-
-The **Bespoke Workflow for starlink_position** is what's used in this
-repo. It offers maintainers a choice of the *Quick & Dirty* workflow or
-the *Best Practice* workflow, and uses WhatsApp to gain the right to edit.
+familiarity with git and GitHub. It is not described here - if you know
+you know.
 
 ## Git + GitHub concepts and terminology
 
@@ -146,54 +144,36 @@ same files/folders. The main branch is called "main", and there is a
 paul_work, bruce_work, and a rui_work branch that you can use. You can
 also make your own branches.
 
-Maintainers use git client software to manipulate their local copy and to
-interact with the master copy in the cloud.
-
 ### GitHub
 
 GitHub is a website that hosts the "master copy" of the
-repo in the cloud.
+repo in the cloud. It offers ways to update the master copy using
+its web pages.
 
-In the *Quick & Dirty* workflow, maintainers edit
+#### Master copy update procedures
+
+In the *Quick & Dirty* procedure, maintainers edit
 files in the master copy directly using the GitHub website.
 
-In the *Best Practice*
-workflow, maintainers get a copy of the repo by **cloning**
-it into a local folder. Maintainers then **commit** changes to
-their work-branch in their local copy. When ready to push
+In the *Best Practice* process, maintainers get a copy of the repo
+by **cloning** it into a local folder. Maintainers then **commit**
+changes to their work-branch in their local copy. When ready to push
 changes to the cloud, maintainers **pull** any updates from the cloud,
 then merge their work-branch to the *main* branch then **push** *main*
-to the master copy in the cloud. Other
-maintainers **pull** the latest changes to *main* down from the cloud into their
+to the master copy in the cloud. Other *Best Practice* maintainers
+**pull** the latest changes to *main* down from the cloud into their
 local repo copy, where they are (usually) merged automatically. Cruising
 skippers probably don't want to become git experts, and this process,
 which is used by software development teams, is probably too complex
-and heavyweight.
+and heavyweight for cruising skippers, but preferred by SW devs.
 
-The *Bespoke workflow for starlink_position* is an augmented
-version of the *Quick & Dirty* workflow.
-
-# Bespoke workflow for starlink_position repo
-
-We are using a bespoke workflow for making changes to the
-starlink_position repo. It aims to balance convenience with safety
-for multiple maintainers working in the same repo, potentially
-on the same files.
-
-We are using the *Quick & Dirty* procedures augmented with
-grabbing or releasing the right to edit by sending a WhatsApp
-message to the other maintainers.
-
-The *Best Practice* procedures may optionally
-be used by maintainers familiar with how to do it but they need to grab the
-right to update *main*, same as someone using the *Quick & Dirty* procedures.
-
-
-# Quick & Dirty workflow procedures
+# Quick & Dirty workflow procedure
 
 Open the repo in GitHub and navigate to the file you want to edit.
 For example, navigate to https://github.com/Maddox-zephyr/starlink_position/blob/main/docs/starlink_setup.md on the main branch. See the screenshot below.
 ![github edit](images/Quick_dirty_github_web.jpeg). 
+
+### Editing markdown files
 
 The right red arrow points to the edit button. When you press it
 you get an editing web page that allows you to directly edit the
@@ -241,22 +221,35 @@ Try to use common image formats like jpeg or png for maximum compatibility.
 
 # Bespoke workflow for starlink_position
 
-We have agreed that maintainers should use Quick & Dirty workflow 
-procedures for modifying the repo:
+We are using a bespoke workflow for making changes to the
+starlink_position repo. It aims to balance convenience with safety
+for multiple maintainers working in the same repo, potentially
+on the same files.
 
-1. When you want to make changes to the *main* branch, grab exclusive
+The *Bespoke workflow for starlink_position* allows using either
+the *Quick & Dirty* procedures or the *Best Practice* process, but
+in either case augments with a WhatsApp message to other maintainers.
+
+1. When you want to make changes to the *main* branch in the
+master copy on GitHub, grab exclusive
 control of the repo by announcing on the maintainer's WhatsApp group
 that you are editing the repo and no-one else should edit it until you
-announce that you're done.
+announce that you're done. Check first that no other
+maintainer grabbed control.
 2. You can use the Quick & Dirty procedure to directly edit on the *main*
 branch.
-3. Whenever you've committed, you can reload the web page in another tab
+3. Whenever you've committed, reload the web page in another tab
 and see whether you're happy with how it looks. If not, go back and
 edit and commit some more. Updates to the web page happen within seconds
 of a commit to *main*
-4. When you're done, announce to the maintainer's WhatsApp group that
-you're done. Now anyone else can grab editing control.
-5. Maintainers who are knowledgable with git and the *Best Practice* workflow,
+4. Maintainers who are knowledgable with git and the *Best Practice* workflow,
 may edit locally on their work-branch, but must grab the right
-to edit *main* by sending a message to WhatsApp before pushing
+to push to *main* by sending a message to the WhatsApp maintainers
+group before pushing
 updates to *main*, so as not to get tangled-up with another maintainer.
+As with *Quick & Dirty*, first check that no-one else has grabbed permission.
+This is a "gentlemen's agreement" workflow.
+5. Reload the web page you've been working on and check that all your
+changes are rendered correctly.
+6. When you're done, announce to the maintainer's WhatsApp group that
+you're done. Now anyone else can grab editing control.
