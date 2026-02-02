@@ -188,6 +188,50 @@ edit and commit a change to the file you're working on. If that happens,
 you'll get an error when you try to commit your change, and you may need
 to reapply your edits, so save them away somewhere.
 
+### Adding images
+
+When updating a .md documentation file, you frequently want to include
+images, such as screenshots and reference them in the text. Using
+the Quick & Dirty workflow you can do this easily:
+
+1. Capture your screenshot and mark it up with arrows or however you
+want and save it to a file with some meaningful name.
+2. On the github web page, navigate through the docs folder into the
+images folder.
+3. On the right side, click the **Add Files** button, and select
+**Upload files**. See the image below.
+![add files](images/github_upload_file.png)
+4. The next page will allow you to drag & drop files, or select files.
+See the image below if you choose to select files.
+![add files2](images/github_upload_file2.png)
+  1. You can select more than one file
+  2. Open the selected files. They will be uploaded.
+  3. When you've uploaded the file(s), press the **Commit** button
+  to commit them to the repo
+5. Edit the .md file and reference the image where you want it to
+display by putting text like this in the .md file:
+```
+[image name](images/YOUR_FILENAME.jpeg)
+```
+
+Try to use common image formats like jpeg or png for maximum compatibility.
+
 # Bespoke workflow for starlink_position
 
-TBD
+We have agreed on a modified Quick & Dirty workflow for modifying the repo;
+
+1. When you want to make changes to the *main* branch, grab exclusive
+control of the repo by announcing on the maintainer's WhatsApp group
+that you are editing the repo and no-one else should edit it until you
+announce that you're done.
+2. You can use the Quick & Dirty procedure to directly edit on the *main*
+branch.
+3. Whenever you've committed, you can reload the web page in another tab
+and see whether you're happy with how it looks. If not, go back and
+edit some more.
+4. When you're done, announce to the maintainer's WhatsApp group that
+you're done. Now anyone else can grab editing control.
+
+If you're already knowledgable with git and the *Best Practice* workflow,
+you may edit locally on your work-branch, but be sure to grab the right
+to edit *main* by sending a message to WhatsApp before you push your updates to *main*, so as not to get tangled-up with another maintainer.
