@@ -20,7 +20,7 @@ for the military and researchers. 
 While Starlink satellites use GPS themselves to stay in orbit, the system can provide location 
 and timing services to users on the ground even when traditional GPS is jammed or unavailable.
 
-#Superior Signal Strength
+# Superior Signal Strength
 
 The primary reason Starlink is more resilient than GPS in degraded environments is its orbital altitude.
 
