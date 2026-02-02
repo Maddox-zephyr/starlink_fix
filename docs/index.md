@@ -11,7 +11,46 @@ repository for important documentation and software that will not be visible
 to those who join the WhatsApp group after some post has been made. It
 is a place for anyone to get the relevant info at any time.
 
-# Purpose
+# Why is Starlink more resilient in a degraded GPS environment
+
+Starlink’s ability to operate in degraded or "GPS-denied" environments is a significant area of 
+development, both for SpaceX’s own service reliability and as an alternative navigation system 
+for the military and researchers.  
+
+While Starlink satellites use GPS themselves to stay in orbit, the system can provide location 
+and timing services to users on the ground even when traditional GPS is jammed or unavailable.
+
+1. Superior Signal Strength
+The primary reason Starlink is more resilient than GPS in degraded environments is its orbital altitude.
+
+• GPS (MEO): Traditional GPS satellites orbit at about 20,200 km. By the time their signals reach Earth, they are extremely faint—often compared to the light of a 25-watt bulb seen from hundreds of miles away. This makes them easy to "drown out" with low-power jammers.  
+
+• Starlink (LEO): These satellites orbit at only 550 km. Because they are roughly 40 times closer, their signals are 1,000 to 10,000 times stronger than GPS. This "loudness" makes Starlink signals much harder to jam or spoof.  
+
+2. "Signals of Opportunity" (Passive Navigation)
+Researchers (notably from UT Austin and Ohio State) have successfully used Starlink’s existing
+internet downlink signals for positioning without any help from SpaceX. This is known as
+opportunistic positioning.
+  
+• Doppler Shift: Because Starlink satellites move very fast across the sky (completing an orbit
+in ~90 minutes), receivers can measure the "Doppler shift" (the change in frequency as the
+satellite passes over). By tracking several satellites, a receiver can calculate its location.
+ 
+• Accuracy: Current research has achieved accuracy within 6.5 to 30 meters. While not as precise 
+as the sub-meter accuracy of high-end GPS, it is more than enough for drone navigation or 
+maritime travel when GPS is totally blacked out.  
+
+3. Integrated Resilience (SpaceX Official Features)
+SpaceX has begun leaning into this capability officially. In recent FCC filings and military
+tests, they have highlighted:
+
+• Star Tracker Fallback: Starlink terminals use internal "star trackers" and inertial sensors to 
+maintain orientation. If GPS is spoofed, the terminal can often detect the anomaly (pointing 
+errors) and switch to fallback methods to maintain a data connection.  
+
+• Dense Network: With over 6,000 satellites, a Starlink receiver almost always has a direct line-of-sight to multiple "birds." In urban canyons where tall buildings block GPS signals, the sheer density of Starlink makes it much more likely to maintain a lock.
+
+# Purpose of this site
 
 Many new members of the Cruiser Connect community, and especially the
 Starlink Datahub GPS positioning discussion have joined and likely missed
