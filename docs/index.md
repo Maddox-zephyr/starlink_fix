@@ -20,14 +20,15 @@ for the military and researchers. 
 While Starlink satellites use GPS themselves to stay in orbit, the system can provide location 
 and timing services to users on the ground even when traditional GPS is jammed or unavailable.
 
-1. Superior Signal Strength
+#Superior Signal Strength
+
 The primary reason Starlink is more resilient than GPS in degraded environments is its orbital altitude.
 
 • GPS (MEO): Traditional GPS satellites orbit at about 20,200 km. By the time their signals reach Earth, they are extremely faint—often compared to the light of a 25-watt bulb seen from hundreds of miles away. This makes them easy to "drown out" with low-power jammers.  
 
 • Starlink (LEO): These satellites orbit at only 550 km. Because they are roughly 40 times closer, their signals are 1,000 to 10,000 times stronger than GPS. This "loudness" makes Starlink signals much harder to jam or spoof.  
 
-2. "Signals of Opportunity" (Passive Navigation)
+# "Signals of Opportunity" (Passive Navigation)
 Researchers (notably from UT Austin and Ohio State) have successfully used Starlink’s existing
 internet downlink signals for positioning without any help from SpaceX. This is known as
 opportunistic positioning.
@@ -40,7 +41,7 @@ satellite passes over). By tracking several satellites, a receiver can calculate
 as the sub-meter accuracy of high-end GPS, it is more than enough for drone navigation or 
 maritime travel when GPS is totally blacked out.  
 
-3. Integrated Resilience (SpaceX Official Features)
+#Integrated Resilience (SpaceX Official Features)
 SpaceX has begun leaning into this capability officially. In recent FCC filings and military
 tests, they have highlighted:
 
