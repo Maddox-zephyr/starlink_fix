@@ -93,33 +93,39 @@ in parentheses needs to be the image filename relative to the docs directory.
 
 # GitHub repos
 
-GitHub contains the master copy of this repo in the cloud,
-including its entire history.
-Maintainers can make changes to the master copy in one of three ways:
+GitHub contains the master copy of this repo in the cloud, including its
+entire history.  Maintainers can make changes to the master copy in one
+of three ways:
 
 1. Quick and Dirty: Directly edit a file on the GitHub repo web page
 2. Best Practice: Edit a local copy on a branch, merge the branch to main,
 then push your updated main to the master copy in the cloud.
 3. Bespoke workflow for starlink_position
 
+## Collaboration on GitHub
+
 There are several collaborators on this project, and some way of allowing
 each of us to work independently, yet not step on each other's toes is needed.
-This is the purpose of the Best Practice workflow.
+This is the purpose of the *Bespoke Workflow for starlink_position* - it
+states how we need to all behave in order to not step on each other's toes,
+while not unduly burdening those unfamiliar with git practices.
 
 The **Quick & Dirty** workflow is adequate if you're making a minor change
 to a file that you expect you're the only one working on. You directly change
-the repo in the cloud. It is simple, but can fail if someone else
+the repo in the cloud. It is simple, but it can fail if someone else
 makes a change between when you start editing and when you want to
-commit your changes.
+commit your changes. This should not happen if you're using the
+*Bespoke workflow for starlink_position* described below.
 
 The **Best Practice** workflow is best when you are going to be working
 on a line of development for some time, during which others may make
 changes in the repo. It is more complicated, involving local and cloud
-repos and getting changes synced between the two.
+repos and getting changes synced between the two. It requires considerable
+familiarity with git and GitHub.
 
-The **Bespoke Workflow for starlink_position** hasn't been agreed among
-the developers, but we can probably some up with a lighter-weight process
-that protects maintainers from stepping on each other's toes.
+The **Bespoke Workflow for starlink_position** is what's used in this
+repo. It offers maintainers a choice of the *Quick & Dirty* workflow or
+the *Best Practice* workflow, and uses WhatsApp to gain the right to edit.
 
 ## Git + GitHub concepts and terminology
 
@@ -164,9 +170,26 @@ skippers probably don't want to become git experts, and this process,
 which is used by software development teams, is probably too complex
 and heavyweight.
 
-The *Bespoke workflow for starlink_position* is TBD
+The *Bespoke workflow for starlink_position* is an augmented
+version of the *Quick & Dirty* workflow.
 
-# Quick & Dirty workflow
+# Bespoke workflow for starlink_position repo
+
+We are using a bespoke workflow for making changes to the
+starlink_position repo. It aims to balance convenience with safety
+for multiple maintainers working in the same repo, potentially
+on the same files.
+
+We are using the *Quick & Dirty* procedures augmented with
+grabbing or releasing the right to edit by sending a WhatsApp
+message to the other maintainers.
+
+The *Best Practice* procedures may optionally
+be used by maintainers familiar with how to do it but they need to grab the
+right to update *main*, same as someone using the *Quick & Dirty* procedures.
+
+
+# Quick & Dirty workflow procedures
 
 Open the repo in GitHub and navigate to the file you want to edit.
 For example, navigate to https://github.com/Maddox-zephyr/starlink_position/blob/main/docs/starlink_setup.md on the main branch. See the screenshot below.
@@ -218,7 +241,8 @@ Try to use common image formats like jpeg or png for maximum compatibility.
 
 # Bespoke workflow for starlink_position
 
-We have agreed on a modified Quick & Dirty workflow for modifying the repo;
+We have agreed that maintainers should use Quick & Dirty workflow 
+procedures for modifying the repo:
 
 1. When you want to make changes to the *main* branch, grab exclusive
 control of the repo by announcing on the maintainer's WhatsApp group
@@ -228,10 +252,11 @@ announce that you're done.
 branch.
 3. Whenever you've committed, you can reload the web page in another tab
 and see whether you're happy with how it looks. If not, go back and
-edit some more.
+edit and commit some more. Updates to the web page happen within seconds
+of a commit to *main*
 4. When you're done, announce to the maintainer's WhatsApp group that
 you're done. Now anyone else can grab editing control.
-
-If you're already knowledgable with git and the *Best Practice* workflow,
-you may edit locally on your work-branch, but be sure to grab the right
-to edit *main* by sending a message to WhatsApp before you push your updates to *main*, so as not to get tangled-up with another maintainer.
+5. Maintainers who are knowledgable with git and the *Best Practice* workflow,
+may edit locally on their work-branch, but must grab the right
+to edit *main* by sending a message to WhatsApp before pushing
+updates to *main*, so as not to get tangled-up with another maintainer.
