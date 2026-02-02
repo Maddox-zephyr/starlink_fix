@@ -90,7 +90,8 @@ That said, THEODORE reported that he actually sailed through an area of
 GPS spoofing near Port Soudan, and used starlink with the option “Use
 Starlink Positioning Exclusively”.  He said that Starlink position
 reported it had good accuracy under way at 5-6 knots for 50 miles, and
-that its position agreed with GPS once he exited the area of GPS jamming.
+that its position agreed with GPS once he exited the area of GPS jamming. 
+(Note: Speeds greater than 6 knots may experience less accuracy)
 
 ### Starlink -> Signalk -> OpenCPN
 
