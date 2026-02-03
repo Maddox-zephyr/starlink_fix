@@ -132,7 +132,7 @@ Some MFDs (e.g. Raymarine Axiom series) allow manual GPS source selection.
 Select: GPS Source → DataHub (RDSensing)
 
 ### Image placeholder
-[IMAGE: Raymarine Axiom Pro – GPS source selection showing DataHub]
+![IMAGE: Raymarine Axiom Pro – GPS source selection showing DataHub](images/chartplotter_gps_select_screen.jpeg)
 (Make/Model: Raymarine Axiom Pro)
 
 
@@ -152,13 +152,12 @@ In this case:
 The chartplotter will then automatically use the **only available source**: DataHub → Starlink.
 
 #### Example: GPS lost before enabling DataHub
-
-[IMAGE: GPS Status – Position Fix Lost]
+![IMAGE: GPS Status – Position Fix Lost](images/RaymarineE120_PositionFixLost.heic)
 (Make/Model: Raymarine E120 Wide Classic)
 
 
 #### Example: Fix restored via DataHub / Starlink
-[IMAGE: GPS Status – Fix, coordinates, HDOP from DataHub]
+[IMAGE: GPS Status – Fix, coordinates, HDOP from DataHub](images/RaymarineE120_working_with_Startlink.heic)
 (Make/Model: Raymarine E120 Wide Classic)
 
 
@@ -186,7 +185,7 @@ This allows **full system integration**, including:
 - Ensure your device is connected to the **DataHub Wi-Fi**
 - **Not** the Starlink Wi-Fi
 
-[IMAGE: Mobile device connected to DataHub Wi-Fi (not Starlink)]
+![IMAGE: Mobile device connected to DataHub Wi-Fi (not Starlink)](images/Datahub_wifi.PNG)
 
 
 ---
@@ -202,6 +201,8 @@ This allows **full system integration**, including:
   - Input only
   - Enable
 
+![IMAGE: OpenCPN – Network connection settings using UDP](images/OPENCPN_UDP_Setup.JPG
+
   OR
   - Protocol: **TCP** (alternative)
   - Address: 10.10.10.1
@@ -209,7 +210,7 @@ This allows **full system integration**, including:
   - Input only
   - Enable
 
-[IMAGE: OpenCPN – Network connection settings]
+![IMAGE: OpenCPN – Network connection settings using UDP](images/OPENCPN_TCP_Setup.JPG
 
 
 ---
