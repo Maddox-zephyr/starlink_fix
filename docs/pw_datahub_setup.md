@@ -71,6 +71,7 @@ You should see in the changelog:
 
 ![IMAGE:_DataHub Alternate SW update](images/DH_Alternate_Update.jpg)
 (DataHub alternate download)
+
 ---
 
 ## 4. Enable Starlink GPS in DataHub
@@ -135,7 +136,6 @@ Select: GPS Source → DataHub (RDSensing)
 ![IMAGE: Raymarine Axiom Pro – GPS source selection showing DataHub](images/chartplotter_gps_select_screen.jpeg)
 (Make/Model: Raymarine Axiom Pro)
 
-
 ---
 
 ### 6.2 Legacy Chartplotters (No GPS Source Selection)
@@ -159,7 +159,6 @@ The chartplotter will then automatically use the **only available source**: Data
 #### Example: Fix restored via DataHub / Starlink
 ![IMAGE: GPS Status – Fix, coordinates, HDOP from DataHub](images/RaymarineE120_working_with_Startlink.jpg)
 (Make/Model: Raymarine E120 Wide Classic)
-
 
 ---
 
@@ -186,21 +185,35 @@ This allows **full system integration**, including:
 This ensures Navionics uses **only Starlink-derived position data**.
 
 ![IMAGE: Disabling phone Location Services](images/Toogle_Off_Location_Services.PNG)
+
+---
  
 ### 8.2 Your Navionics shouls give you a warning **GPS not enabled**. We are not ready to pair our Datahub as the new GPS source
 
 ![IMAGE: Navionics warning "GPS not exabled"](images/Navionics_location_services_off.JPG)
 
-### 8.3 Connect device to **DataHub Wi-Fi**
+---
+
+### 8.3 Connect device to **DataHub Wi-Fi** 
+**Not** the Starlink Wi-Fi
+
+![IMAGE: Mobile device connected to DataHub Wi-Fi (not Starlink)](images/Datahub_wifi.PNG)
+
+---
+
 ### 8.4 Pair the DataHub GPS source: Go to:  Menu → Paired Devices
 
 ![IMAGE: Navionics – Menu - Paired Devices](images/Navionics_Paired_devices_menu.PNG)
+
+---
 
 ### 8.5 Click the '+' to pair a new device and then click on 'Add Device"
 
 ![IMAGE: Navionics - How to pair a new device](images/Navionics_how_to_pair_new_device.PNG)
 
 ![IMAGE: Navionics - Pairing a New Device](images/Navionics_Pairing_new_device.PNG)
+
+---
 
 ### 8.6 Setup the new device as:
   - Name: DataHub_Starlink_over UDP (example - free field)
@@ -216,15 +229,20 @@ This ensures Navionics uses **only Starlink-derived position data**.
   - Port Number: 11102
   - Protocol : **TCP** (alternative)
 
+---
+
 ### 8.7. Click **SAVE**
   You should now be able to see the new active device receiving GPS positions from the paired Datahub:
 
 ![IMAGE: Navionics - Datahub successfully paired](images/Navionics_datahub-successfully_paired.PNG)
+
+---
    
 ### 8.8 You are now ready to navigate using Navionics using Starlink Positioning over Datahub
 
 ![IMAGE: Navionics - Navigating using Startlink Positioning over Datahub](images/Navionics_Navigating_using_Starlink.PNG)
 
+---
 
 ### Remarks:
 - Navionics **cannot disable a paired device**
@@ -243,13 +261,11 @@ This ensures Navionics uses **only Starlink-derived position data**.
 
 This ensures OpenCPN uses **only Starlink-derived position data**.
 
+---
 
 ### 9.2 Network Setup
 - Ensure your device is connected to the **DataHub Wi-Fi**
 - **Not** the Starlink Wi-Fi
-
-![IMAGE: Mobile device connected to DataHub Wi-Fi (not Starlink)](images/Datahub_wifi.PNG)
-
 
 ---
 
