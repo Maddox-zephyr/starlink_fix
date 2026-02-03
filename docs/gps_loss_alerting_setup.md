@@ -63,6 +63,8 @@ cd GPS_loss_alerting
 ```
 python -m pip install -r requirements.txt
 ```
+**Note:** if you are installing on Ubuntu 24.04 or later you might want to
+create and activate a virtual environment.
 
 ### Run diff_starlink_gps.py
 
@@ -72,16 +74,17 @@ python diff_starlink_gps.py
 ```
 It should display something like:
 ```
-diff_starlink_gps.py 
-Starlink Position: 4° 7.294' , 73° 27.882'  GPS delta: 0.0 miles
-Starlink Position: 4° 7.294' , 73° 27.882'  GPS delta: 0.0 miles
-Starlink Position: 4° 7.294' , 73° 27.882'  GPS delta: 0.0 miles
-Starlink Position: 4° 7.294' , 73° 27.882'  GPS delta: 0.0 miles
-Starlink Position: 4° 7.294' , 73° 27.882'  GPS delta: 0.0 miles
+2026-02-04 03:43:12,037 - INFO - GpsAlerter initialized.
+2026-02-04 03:43:12,038 - INFO - Starting GPS Alerter...
+2026-02-04 03:43:12,067 - INFO - Connected to Signal K websocket at ws://192.168.1.116:80/signalk/v1/stream?subscribe=none
+2026-02-04 03:43:12,067 - INFO - Subscribed to navigation.position updates.
+2026-02-04 03:43:14,900 - INFO - Starlink Position: 4° 7.298' N, 73° 27.873' E. GPS delta: 0.004 NM (max: 0.004 NM)
+2026-02-04 03:44:29,911 - INFO - Starlink Position: 4° 7.298' N, 73° 27.873' E. GPS delta: 0.004 NM (max: 0.004 NM)
+2026-02-04 03:45:44,893 - INFO - Starlink Position: 4° 7.298' N, 73° 27.873' E. GPS delta: 0.004 NM (max: 0.004 NM)
 ```
 Observe the delta-distance between
 the location provided by Starlink and that provided by GPS.
-In a normal environment, the GPS delta should be 0.0 miles.
+In a normal environment, the GPS delta should be a small fraction of a mile.
 
 # Future
 3. Get a key for a gmail account that the system should send alerts to. (Describe
