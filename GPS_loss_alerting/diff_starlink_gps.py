@@ -379,7 +379,7 @@ class GpsAlerter:
 
 
 
-def main():
+async def main():
     """Main function to run the alerter."""
     parser = argparse.ArgumentParser(description="Monitor Starlink and GPS position data.")
     parser.add_argument("-t", "--test", action="store_true",
