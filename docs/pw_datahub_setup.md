@@ -118,7 +118,7 @@ Recent DataHub updates introduce **advanced tuning options**:
 
 > ⚠️ Excessive smoothing may delay turns and course changes.
 
-[IMAGE: DataHub Starlink GPS Advanced Options – Poll Rate / Window Size / Smoothing](images/DH_GPS_via_Startlink_Advanced.jpg)
+![IMAGE: DataHub Starlink GPS Advanced Options – Poll Rate / Window Size / Smoothing](images/DH_GPS_via_Startlink_Advanced.jpg)
 (Make/Model: PredictWind DataHub)
 
 ---
@@ -157,7 +157,7 @@ The chartplotter will then automatically use the **only available source**: Data
 
 
 #### Example: Fix restored via DataHub / Starlink
-[IMAGE: GPS Status – Fix, coordinates, HDOP from DataHub](images/RaymarineE120_working_with_Startlink.heic)
+[IMAGE: GPS Status – Fix, coordinates, HDOP from DataHub](images/RaymarineE120_navigating_with_Starlink.heic)
 (Make/Model: Raymarine E120 Wide Classic)
 
 
