@@ -15,6 +15,12 @@ messages, making them usable by:
 > Starlink positioning and DataHub-derived GPS data are **not certified as primary navigation sources**.
 > This setup is intended as a **fallback / resilience option** only.
 > Always cross-check position data and revert to certified GNSS sources as soon as possible.
+> PredictWind provides no warranty or guarantee for the reliability and accuracy of any GPS position data supplied from Starlink.
+>
+> ⚠️ **Other Important Notes**
+> The DataHub cannot accommodate this feature in the firmware due to its large file size.
+> PredictWind is offering this upgrade via a manual workaround that relies on the Datahub's internal SD card, and as such is not a long-term solution.
+> We have done this to provide immediate support to Red Sea cruisers in the interests of the safety of our customers. 
 
 ---
 
@@ -60,54 +66,81 @@ Starlink positioning support requires **DataHub firmware v4.41 (beta)**.
 
 ### Steps
 1. Login to the DataHub web interface
-2. Navigate to: Services → Settings → Software Update
+2. Navigate to: **Services → Settings → Software Update**
 3. Select **Alternate**
-4. Upgrade to **v4.41** or later
+4. Upgrade to **v4.43** (**Important Note:** This is the **only** version of DataHub Firmware with SLGPS capability)
 
 You should see in the changelog: 
-  Starlink infrastructure
-  > ℹ️ This feature is currently available only to **PredictWind Pro users**.
+  "Starlink infrastructure"
+
+  > ℹ️ This feature is available only to **PredictWind Pro users**.
   > DataHub Pro hardware is required due to increased memory and CPU usage.
+> 
+  > ⚠️ Once manually enabled, if your DataHub SD card is ever wiped, or when your Datahub firmware is upgraded, **your DataHub will lose this feature**.
+  > The best solution is to buy a DataHub Pro to continue to use Starlink GPS long term. 
 
 ![IMAGE:_DataHub Alternate SW update](images/DH_Alternate_Update.jpg)
 (DataHub alternate download)
 
 ---
 
-## 4. Enable Starlink GPS in DataHub
+## 4. Enable Remote Access
+
+Remote Access is required by PredictWind to manually enable Startlink GPS
+
+### Steps
+1. Login to the DataHub web interface
+2. Navigate to: **Services → Remote Access → Tools**
+3. Tick **Startup on Boot** and **Persistent Connection**
+   
+![IMAGE: DataHub Internet → Remote Access → Options](images/DH_EnableRemoteSupportOptions.jpg)
+
+5. Click **SAVE & APPLY**
+6. Navigate to: **Services → Remote Access**
+7. On the webform for Remote Support, add your **Boat Name**, **Your Name** and your **Email**
+8. In the **Additional Info** field, add "Please Enable SLGPS"
+9. Click **ENABLE REMOTE SUPPORT**
+
+![IMAGE: DataHub Internet → Remote Access](images/DH_EnableRemoteAccess.jpg)
+
+Within 24/48 hours, PredictWind Support will connect to your unit and apply the manual workaround and be in contact with you directly.
+
+---
+
+## 5. Enable Starlink GPS in DataHub
 
 After updating:
-1. Go to: Internet → Starlink
+1. Go to: **Internet → Starlink**
 2. Enable **GPS via Starlink**
 3. Click **Save & Apply**
 
 ![IMAGE: DataHub Internet → Starlink → GPS via Starlink enabled](images/DH_GPS_via_Starlink.jpg)
-(Make/Model: PredictWind DataHub, firmware v4.41)
+(Make/Model: PredictWind DataHub, firmware v4.43)
 
-4. Then go to: NMEA → Source
+4. Then go to: **NMEA → Source**
 5. Select **Position via Statlink**
 6. Click **Save & Apply**
 
 ![IMAGE: DataHub NMEA → Source → Position via Startlink selected](images/DH_Nmea_Source_via_Startlink.jpg)
-(Make/Model: PredictWind DataHub, firmware v4.41)
+(Make/Model: PredictWind DataHub, firmware v4.43)
 
 ---
 
-## 5. Advanced Starlink GPS Tuning (New)
+## 6. Advanced Starlink GPS Tuning (New)
 
 Recent DataHub updates introduce **advanced tuning options**:
 
-### 5.1 Poll Rate
+### 6.1 Poll Rate
 - Range: 2–10 seconds
 - Controls how often the DataHub queries the Starlink dish
 - Lower = more responsive, higher CPU/network usage
 
-### 5.2 Window Size
+### 6.2 Window Size
 - Number of samples used to compute averages
 - Affects COG/SOG stability
 - Larger values = smoother output, more lag
 
-### 5.3 Smoothing Factor
+### 6.3 Smoothing Factor
 - Range: 0.0 – 1.0
 - Exponential smoothing applied to track output
 - Higher = smoother, but increased latency
@@ -124,9 +157,9 @@ Recent DataHub updates introduce **advanced tuning options**:
 
 ---
 
-## 6. Chartplotter Configuration
+## 7. Chartplotter Configuration
 
-### 6.1 Modern Chartplotters (GPS Source Selection)
+### 7.1 Modern Chartplotters (GPS Source Selection)
 
 Some MFDs (e.g. Raymarine Axiom series) allow manual GPS source selection.
 
@@ -138,7 +171,7 @@ Select: GPS Source → DataHub (RDSensing)
 
 ---
 
-### 6.2 Legacy Chartplotters (No GPS Source Selection)
+### 7.2 Legacy Chartplotters (No GPS Source Selection)
 
 Older chartplotters (e.g. **Raymarine E120 Classic**) do **not** allow GPS source selection.
 
@@ -162,7 +195,7 @@ The chartplotter will then automatically use the **only available source**: Data
 
 ---
 
-## 7. DataHub → Navigation Backbone (NMEA2000 / Seatalk)
+## 8. DataHub → Navigation Backbone (NMEA2000 / Seatalk)
 
 When connected to the navigation backbone, the DataHub injects GNSS data into:
 
@@ -178,7 +211,7 @@ This allows **full system integration**, including:
 
 ---
 
-## 8. Navionics Configuration ( (Step-by-Step)
+## 9. Navionics Configuration ( (Step-by-Step)
 
 ### 8.1 Disable Internal GPS / disable phone **Location Services**
 
@@ -188,26 +221,26 @@ This ensures Navionics uses **only Starlink-derived position data**.
 
 ---
  
-### 8.2 Your Navionics shouls give you a warning **GPS not enabled**. We are not ready to pair our Datahub as the new GPS source
+### 9.2 Your Navionics shouls give you a warning **GPS not enabled**. We are not ready to pair our Datahub as the new GPS source
 
 ![IMAGE: Navionics warning "GPS not exabled"](images/Navionics_location_services_off.JPG)
 
 ---
 
-### 8.3 Connect device to **DataHub Wi-Fi** 
+### 9.3 Connect device to **DataHub Wi-Fi** 
 **Not** the Starlink Wi-Fi
 
 ![IMAGE: Mobile device connected to DataHub Wi-Fi (not Starlink)](images/Datahub_wifi.PNG)
 
 ---
 
-### 8.4 Pair the DataHub GPS source: Go to:  Menu → Paired Devices
+### 9.4 Pair the DataHub GPS source: Go to:  Menu → Paired Devices
 
 ![IMAGE: Navionics – Menu - Paired Devices](images/Navionics_Paired_devices_menu.PNG)
 
 ---
 
-### 8.5 Click the '+' to pair a new device and then click on 'Add Device"
+### 9.5 Click the '+' to pair a new device and then click on 'Add Device"
 
 ![IMAGE: Navionics - How to pair a new device](images/Navionics_how_to_pair_new_device.PNG)
 
@@ -215,7 +248,7 @@ This ensures Navionics uses **only Starlink-derived position data**.
 
 ---
 
-### 8.6 Setup the new device as:
+### 9.6 Setup the new device as:
   - Name: DataHub_Starlink_over UDP (example - free field)
   - Host: 0.0.0.0
   - Port Number: 11101 
@@ -231,14 +264,14 @@ This ensures Navionics uses **only Starlink-derived position data**.
 
 ---
 
-### 8.7. Click **SAVE**
+### 9.7. Click **SAVE**
   You should now be able to see the new active device receiving GPS positions from the paired Datahub:
 
 ![IMAGE: Navionics - Datahub successfully paired](images/Navionics_datahub-successfully_paired.PNG)
 
 ---
    
-### 8.8 You are now ready to navigate using Navionics using Starlink Positioning over Datahub
+### 9.8 You are now ready to navigate using Navionics using Starlink Positioning over Datahub
 
 ![IMAGE: Navionics - Navigating using Startlink Positioning over Datahub](images/Navionics_Navigating_using_Starlink.PNG)
 
@@ -251,9 +284,9 @@ This ensures Navionics uses **only Starlink-derived position data**.
 
 ---
 
-## 9. OpenCPN Configuration (Step-by-Step)
+## 10. OpenCPN Configuration (Step-by-Step)
 
-### 9.1 Disable Internal GPS
+### 10.1 Disable Internal GPS
 
 - Uncheck **Built-in GPS** in OpenCPN  
   **OR**
@@ -263,13 +296,13 @@ This ensures OpenCPN uses **only Starlink-derived position data**.
 
 ---
 
-### 9.2 Network Setup
+### 10.2 Network Setup
 - Ensure your device is connected to the **DataHub Wi-Fi**
 - **Not** the Starlink Wi-Fi
 
 ---
 
-### 9.3 Add Network Connection
+### 10.3 Add Network Connection
 
 1. Open OpenCPN
 2. Go to: Options → Connections
@@ -293,21 +326,21 @@ This ensures OpenCPN uses **only Starlink-derived position data**.
 
 ---
 
-### 9.4 Go to Settings → Connections and make sure you are only selecting Datahub as the GPS source (UDP or TCP)
+### 10.4 Go to Settings → Connections and make sure you are only selecting Datahub as the GPS source (UDP or TCP)
 
 ![IMAGE: OpenCPN - Selecting the datahub as the new GPS source over UDP or TCP](images/openCPN_UDP_Selection.JPG)
 
 ---
 
-### 9.5 You are now ready to navigate using OpenCPN with Startlink Positionig over Datahub
+### 10.5 You are now ready to navigate using OpenCPN with Startlink Positionig over Datahub
 
 ![IMAGE: OpenCPN - Navigating using Startlink Positioning over Datahub](images/OpenCPN_Navigation.JPG)
 
 ---
 
-## 10. Technical Details – NMEA Sentences & PGNs
+## 11. Technical Details – NMEA Sentences & PGNs
 
-### 10.1 NMEA 0183 (Wi-Fi – UDP/TCP)
+### 11.1 NMEA 0183 (Wi-Fi – UDP/TCP)
 
 The DataHub outputs:
 - `RMC` – Recommended Minimum Navigation Data
@@ -326,7 +359,7 @@ Update rate:
 
 ---
 
-### 10.2 NMEA 2000 PGNs (Backbone)
+### 11.2 NMEA 2000 PGNs (Backbone)
 
 The following PGNs are transmitted:
 
@@ -343,7 +376,7 @@ The following PGNs are transmitted:
 
 ---
 
-## 11. Operational Notes & Best Practices
+## 12. Operational Notes & Best Practices
 
 - Use **Starlink Positioning Exclusively** in the Starlink app when GPS spoofing is suspected
 - Always compare position with:
@@ -354,7 +387,7 @@ The following PGNs are transmitted:
 
 ---
 
-## 12. Summary
+## 13. Summary
 
 This setup provides a **robust, multi-path fallback navigation solution** using:
 
