@@ -6,16 +6,17 @@ along with the current Starlink position.
 
 # High-level objectives
 
-I want to add an alerting capability, which will write a log entry
-when starlink and gps positions differ by more than 0.1 mile, and also
-when they were different and become the same within 0.1 miles tolerance.
+I want to add an alerting capability, which will write a log entry when
+starlink and gps positions differ by more than 0.1 mile, and also when
+they were different and become the same within 0.1 miles tolerance.
 
-I also want log entries if no updates have been received from starlink or
-from gps for 1 minute.
+I also want log entries if no updates have been received from starlink
+or from gps for 1 minute.
 
-Logs are to be printed to the screen, and also appended to a logfile called
-$HOME/logs/starlink_gps_logs.txt. If the directory $HOME/logs doesn't exist, it should
-be created. Alerts are to be appended to an alert file called $HOME/logs/starlink_gps_alerts.txt.
+Logs are to be printed to the screen, and also appended to a logfile
+called $HOME/logs/starlink_gps_logs.txt. If the directory $HOME/logs
+doesn't exist, it should be created. Alerts are to be appended to an
+alert file called $HOME/logs/starlink_gps_alerts.txt.
 
 I intend another program, to be developed later, to read alert_logs.txt
 and send the contents as WhatsApp messages.
@@ -33,16 +34,17 @@ Follow these steps in order.
 
 ## GPS / Starlink difference detection
 
-1. On startup, open the logfile and alert file for appending.
+1. On startup, open the logfile for appending.
 2. Each time a new Starlink location is received, the current code compares the
 Starlink location to the GPS location. Write the current printed output
-to the logfile.
+to the logfile and also the maximum offset since the program started. A log
+record should be printed no more often than every minute.
 3. Add a flag called starlink_gps_big_diff.
 When true, the flag means the difference between Starlink and GPS location is
 greater than 0.1 nautical miles. Initialize it to false
 4.  When a new Starlink location is received, compare it to GPS and determine
-if the flag state needs to change. If so, print a log to the log file and the alert file.
-Change the flag state as appropriate.
+if the flag state needs to change. If so, print a log to the log file and the alert file. The alert file should remain closed and only opened when there
+is an alert to send. Change the flag state as appropriate.
 
 ## Lost data detection
 

@@ -30,7 +30,6 @@ def setup_logging():
         sys.exit(1)
 
     log_file = log_dir / "starlink_gps_logs.txt"
-    alert_file = log_dir / "starlink_gps_alerts.txt"
 
     # Get the root logger
     logger = logging.getLogger()
@@ -46,14 +45,11 @@ def setup_logging():
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
-    # Specific alert handler
+    # Specific alert handler (console and main log only, file opened on-demand)
     alert_logger = logging.getLogger('alerter')
     alert_logger.setLevel(logging.INFO)
     alert_formatter = logging.Formatter('%(asctime)s - %(message)s')
 
-    alert_file_handler = logging.FileHandler(alert_file)
-    alert_file_handler.setFormatter(alert_formatter)
-    alert_logger.addHandler(alert_file_handler)
     # Also log alerts to the main log
     alert_logger.addHandler(file_handler)
     alert_logger.addHandler(stream_handler)
@@ -93,15 +89,22 @@ class GpsAlerter:
         self.test_mode = test_mode
         self.logger, self.alert_logger = setup_logging()
 
+        # Alert file path
+        self.alert_file = Path.home() / "logs" / "starlink_gps_alerts.txt"
+
         # Position data
         self.gps_lat = None
         self.gps_lon = None
         self.starlink_lat = None
         self.starlink_lon = None
+        self.max_distance_nm = 0.0
 
         # Timestamps for data loss detection
         self.last_gps_update_time = None
         self.last_starlink_update_time = None
+
+        # Timestamp for position logging throttle
+        self.last_position_log_time = None
 
         # State flags
         self.starlink_gps_big_diff = False
@@ -120,6 +123,16 @@ class GpsAlerter:
         self.logger.info("GpsAlerter initialized.")
         if self.test_mode:
             self.logger.warning("TEST MODE ENABLED.")
+
+    def _write_alert_to_file(self, message):
+        """Writes an alert message to the alert file, opening and closing it immediately."""
+        try:
+            with open(self.alert_file, 'a') as f:
+                from datetime import datetime
+                timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                f.write(f'{timestamp} - {message}\n')
+        except Exception as e:
+            self.logger.error(f"Error writing to alert file: {e}", exc_info=True)
 
     async def run(self):
         """Main entry point. Runs all monitoring tasks."""
@@ -216,7 +229,9 @@ class GpsAlerter:
     def _update_gps_position(self, lat, lon):
         """Updates the state with a new GPS position."""
         if self.gps_data_lost:
-            self.alert_logger.warning("OK: GPS data stream has resumed.")
+            msg = "OK: GPS data stream has resumed."
+            self.alert_logger.warning(msg)
+            self._write_alert_to_file(msg)
             self.gps_data_lost = False
 
         self.gps_lat = lat
@@ -226,7 +241,9 @@ class GpsAlerter:
     def _update_starlink_position(self, lat, lon):
         """Updates the state with a new Starlink position and triggers checks."""
         if self.starlink_data_lost:
-            self.alert_logger.warning("OK: Starlink data stream has resumed.")
+            msg = "OK: Starlink data stream has resumed."
+            self.alert_logger.warning(msg)
+            self._write_alert_to_file(msg)
             self.starlink_data_lost = False
 
         self.starlink_lat = lat
@@ -246,13 +263,19 @@ class GpsAlerter:
         lat_hemisphere = 'N' if self.starlink_lat >= 0 else 'S'
         lon_hemisphere = 'W' if self.starlink_lon < 0 else 'E'
 
-        # Log the current status to the main log file
-        log_msg = (
-            f"Starlink Position: {abs(slink_lat_deg)}° {slink_lat_min:.3f}' {lat_hemisphere}, "
-            f"{abs(slink_lon_deg)}° {slink_lon_min:.3f}' {lon_hemisphere}. "
-            f"GPS delta: {distance_nm:.3f} NM"
-        )
-        self.logger.info(log_msg)
+        # Log the current status to the main log file only if a minute or more has passed
+        now = time.monotonic()
+        if self.last_position_log_time is None or (now - self.last_position_log_time) >= 60:
+            # Update maximum distance seen
+            self.max_distance_nm = max(self.max_distance_nm, distance_nm)
+            
+            log_msg = (
+                f"Starlink Position: {abs(slink_lat_deg)}° {slink_lat_min:.3f}' {lat_hemisphere}, "
+                f"{abs(slink_lon_deg)}° {slink_lon_min:.3f}' {lon_hemisphere}. "
+                f"GPS delta: {distance_nm:.3f} NM (max: {self.max_distance_nm:.3f} NM)"
+            )
+            self.logger.info(log_msg)
+            self.last_position_log_time = now
 
         # Check if the difference state has changed
         is_different = distance_nm > DISTANCE_THRESHOLD_NM
@@ -264,12 +287,14 @@ class GpsAlerter:
                     f"Current difference is {distance_nm:.3f} NM."
                 )
                 self.alert_logger.warning(alert_msg)
+                self._write_alert_to_file(alert_msg)
             else:
                 alert_msg = (
                     f"OK: GPS/Starlink position difference is back within "
                     f"{DISTANCE_THRESHOLD_NM} NM tolerance. Current difference is {distance_nm:.3f} NM."
                 )
                 self.alert_logger.warning(alert_msg)
+                self._write_alert_to_file(alert_msg)
 
     async def _data_loss_checker_loop(self):
         """Periodically checks if data sources have timed out."""
@@ -283,22 +308,30 @@ class GpsAlerter:
             if self.last_gps_update_time:
                 if now - self.last_gps_update_time > DATA_LOSS_TIMEOUT_S and not self.gps_data_lost:
                     self.gps_data_lost = True
-                    self.alert_logger.warning("ALERT: No GPS data received for 1 minute.")
+                    msg = "ALERT: No GPS data received for 1 minute."
+                    self.alert_logger.warning(msg)
+                    self._write_alert_to_file(msg)
             else: # No data ever received
                 if not self.gps_data_lost:
                     self.gps_data_lost = True
-                    self.alert_logger.warning("ALERT: No GPS data ever received after startup period.")
+                    msg = "ALERT: No GPS data ever received after startup period."
+                    self.alert_logger.warning(msg)
+                    self._write_alert_to_file(msg)
 
 
             # Check for Starlink data loss
             if self.last_starlink_update_time:
                 if now - self.last_starlink_update_time > DATA_LOSS_TIMEOUT_S and not self.starlink_data_lost:
                     self.starlink_data_lost = True
-                    self.alert_logger.warning("ALERT: No Starlink data received for 1 minute.")
+                    msg = "ALERT: No Starlink data received for 1 minute."
+                    self.alert_logger.warning(msg)
+                    self._write_alert_to_file(msg)
             else: # No data ever received
                 if not self.starlink_data_lost:
                     self.starlink_data_lost = True
-                    self.alert_logger.warning("ALERT: No Starlink data ever received after startup period.")
+                    msg = "ALERT: No Starlink data ever received after startup period."
+                    self.alert_logger.warning(msg)
+                    self._write_alert_to_file(msg)
 
 
             await asyncio.sleep(10) # Check every 10 seconds
