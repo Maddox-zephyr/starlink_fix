@@ -20,7 +20,9 @@ messages, making them usable by:
 > ⚠️ **Other Important Notes**
 > The DataHub cannot accommodate this feature in the firmware due to its large file size.
 > PredictWind is offering this upgrade via a manual workaround that relies on the Datahub's internal SD card, and as such is not a long-term solution.
-> We have done this to provide immediate support to Red Sea cruisers in the interests of the safety of our customers. 
+> We have done this to provide immediate support to Red Sea cruisers in the interests of the safety of our customers.
+> 
+> The best solution is to [buy a DataHub Pro](https://shop.predictwind.com/shop/product/datahub-pro-unit) to continue to use Starlink GPS long term. 
 
 ---
 
@@ -77,7 +79,7 @@ You should see in the changelog:
   > DataHub Pro hardware is required due to increased memory and CPU usage.
 > 
   > ⚠️ Once manually enabled, if your DataHub SD card is ever wiped, or when your Datahub firmware is upgraded, **your DataHub will lose this feature**.
-  > The best solution is to buy a DataHub Pro to continue to use Starlink GPS long term. 
+  > The best solution is to [buy a DataHub Pro](https://shop.predictwind.com/shop/product/datahub-pro-unit) to continue to use Starlink GPS long term. 
 
 ![IMAGE:_DataHub Alternate SW update](images/DH_Alternate_Update.jpg)
 (DataHub alternate download)
