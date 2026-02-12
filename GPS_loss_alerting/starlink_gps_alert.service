@@ -13,6 +13,10 @@ ExecStart=/home/bruce/starlink_position/GPS_loss_alerting/.venv/bin/python /home
 StandardOutput=append:/home/bruce/logs/starlink_gps_alert_daemon.log
 StandardError=append:/home/bruce/logs/starlink_gps_alert_daemon.log
 
+# Restart policy: restart on failure
+Restart=on-failure
+RestartSec=5
+
 [Install]
 WantedBy=multi-user.target
 
