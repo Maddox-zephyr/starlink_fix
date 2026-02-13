@@ -334,6 +334,21 @@ class GpsAlerter:
         self.starlink_lat = lat
         self.starlink_lon = lon
         self.last_starlink_update_time = time.monotonic()
+        # Log to CSV every time a Starlink position report comes in
+        for handler in self.logger.handlers:
+            if hasattr(handler, 'emit') and handler.__class__.__name__ == 'CsvLogHandler':
+                import logging
+                handler.emit(logging.LogRecord(
+                    name=self.logger.name,
+                    level=logging.INFO,
+                    pathname=__file__,
+                    lineno=0,
+                    msg='',
+                    args=(),
+                    exc_info=None
+                ))
+
+        # Still only log to text file and check for alerts no more often than every minute
         self._check_position_difference()
 
     def _check_position_difference(self):
