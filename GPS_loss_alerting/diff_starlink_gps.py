@@ -188,7 +188,7 @@ class GpsAlerter:
         self.starlink_lon = None
         self.max_distance_nm = 0.0
         # Speed Over Ground (SOG)
-        self.sog = None
+        self.sog = 0.0
 
         # Timestamps for data loss detection
         self.last_gps_update_time = None
