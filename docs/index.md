@@ -11,6 +11,13 @@ repository for important documentation and software that will not be visible
 to those who join the WhatsApp group after some post has been made. It
 is a place for anyone to get the relevant info at any time.
 
+# Purpose of this site
+
+Many new members of the Cruiser Connect community, and especially the
+Starlink Datahub GPS positioning discussion have joined and likely missed
+some of the earlier messages. This website is intended as a reference
+to bring them up to speed.
+
 # Why is Starlink more resilient in a degraded GPS environment
 
 Starlink’s ability to operate in degraded or "GPS-denied" environments is a significant area of 
@@ -18,9 +25,10 @@ development, both for SpaceX’s own service reliability and as an alternative n
 for the military and researchers.  
 
 While Starlink satellites use GPS themselves to stay in orbit, the system can provide location 
-and timing services to users on the ground even when traditional GPS is jammed or unavailable.
+and timing services to users on the ground even when traditional GPS is jammed or unavailable
+for the following reasons.
 
-# Superior Signal Strength
+## Superior Signal Strength
 
 The primary reason Starlink is more resilient than GPS in degraded environments is its orbital altitude.
 
@@ -28,7 +36,7 @@ The primary reason Starlink is more resilient than GPS in degraded environments 
 
 • Starlink (LEO): These satellites orbit at only 550 km. Because they are roughly 40 times closer, their signals are 1,000 to 10,000 times stronger than GPS. This "loudness" makes Starlink signals much harder to jam or spoof.  
 
-# "Signals of Opportunity" (Passive Navigation)
+## "Signals of Opportunity" (Passive Navigation)
 Researchers (notably from UT Austin and Ohio State) have successfully used Starlink’s existing
 internet downlink signals for positioning without any help from SpaceX. This is known as
 opportunistic positioning.
@@ -41,7 +49,7 @@ satellite passes over). By tracking several satellites, a receiver can calculate
 as the sub-meter accuracy of high-end GPS, it is more than enough for drone navigation or 
 maritime travel when GPS is totally blacked out.  
 
-# Integrated Resilience (SpaceX Official Features)
+## Integrated Resilience (SpaceX Official Features)
 SpaceX has begun leaning into this capability officially. In recent FCC filings and military
 tests, they have highlighted:
 
@@ -51,12 +59,43 @@ errors) and switch to fallback methods to maintain a data connection. 
 
 • Dense Network: With over 6,000 satellites, a Starlink receiver almost always has a direct line-of-sight to multiple "birds." In urban canyons where tall buildings block GPS signals, the sheer density of Starlink makes it much more likely to maintain a lock.
 
-# Purpose of this site
+# Starlink position accuracy
 
-Many new members of the Cruiser Connect community, and especially the
-Starlink Datahub GPS positioning discussion have joined and likely missed
-some of the earlier messages. This website is intended as a reference
-to bring them up to speed.
+It is important to understand the accuracy of your navigation system. The plots below
+show measured results.
+
+The data was captured during a voyage lasting many hours in a healthy GPS environment. GPS was
+used as a "ground truth", against which the accuracy of the position reported by Starlink is evaluated.
+Starlink was in “Use Starlink Positioning Exclusively” mode.
+
+The plots of slink_lat_min and gps_lat_min are the minutes part of starlink latitude and GPS
+latitude, so are approximately in nautical miles. The diff_nm plot is the difference between
+Starlink-reported position and GPS-reported position (in nautical miles). The sog plot is
+speed-over-ground (in knots).
+
+This plot shows data from the entire voyage.
+![entire voyage](images/starlink_accuracy1.png)
+
+This plot shows data from a section of the voyage which exhibited the biggest difference
+between Starlink and GPS position.
+![starlink_accuracy2](images/starlink_accuracy2.png)
+
+## Analysis and conclusions
+
+The plots show that when the vessel is stationary, Starlink and GPS positions agree very
+well. However, as the vessel starts moving, accuracy degrades to an average of about 0.4nm
+at 5-7 knots with peaks to 0.8nm. The second plot shows that the inaccuracy is due to about
+a 5-minute periodicity in how often Starlink really brings its position up to the best
+accuracy (i.e. aligns with GPS). The cause of this is not understood.
+
+The measured accuracy of Starlink data is a lot worse than GPS, but is still a lot better
+than spoofed GPS, when chartplotters have shown a vessel in the middle of the desert traveling
+at 20 knots, and a lot better than jammed GPS, where a chartplotter has no GPS position data.
+
+Starlink position seems useful in certain navigation situations, such as keeping out
+of shipping lanes, but not useful in others where really precise position accuracy
+is needed. Use good judgement in deciding whether and when to use Starlink for
+position data.
 
 # Using Starlink position data
 
