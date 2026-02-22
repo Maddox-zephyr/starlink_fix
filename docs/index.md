@@ -61,41 +61,19 @@ errors) and switch to fallback methods to maintain a data connection. 
 
 # Starlink position accuracy
 
-It is important to understand the accuracy of your navigation system. The plots below
-show measured results.
+It is important to understand the accuracy of your navigation system. 
 
-The data was captured during a voyage lasting many hours in a healthy GPS environment. GPS was
-used as a "ground truth", against which the accuracy of the position reported by Starlink is evaluated.
-Starlink was in “Use Starlink Positioning Exclusively” mode.
+Rui has tested the new DataHub software that reads Starlink position
+from a Starlink mini antenna.  Analysis of collected data shows that
+the Starlink-reported position in Starlink-exclusive mode is more or
+less within 20-30 meters of what GPS reports.
 
-The plots of slink_lat_min and gps_lat_min are the minutes part of starlink latitude and GPS
-latitude, so are approximately in nautical miles. The diff_nm plot is the difference between
-Starlink-reported position and GPS-reported position (in nautical miles). The sog plot is
-speed-over-ground (in knots).
+Bruce (Wild Orchid) has experienced problems of unknown origin with the
+4-year-old Starlink V2 antenna, and performance so far is unacceptable;
+there are regular data freezes. This is a work in progress.
 
-This plot shows data from the entire voyage.
-![entire voyage](images/starlink_accuracy1.png)
-
-This plot shows data from a section of the voyage which exhibited the biggest difference
-between Starlink and GPS position.
-![starlink_accuracy2](images/starlink_accuracy2.png)
-
-## Analysis and conclusions
-
-The plots show that when the vessel is stationary, Starlink and GPS positions agree very
-well. However, as the vessel starts moving, accuracy degrades to an average of about 0.4nm
-at 5-7 knots with peaks to 0.8nm. The second plot shows that the inaccuracy is due to about
-a 5-minute periodicity in how often Starlink really brings its position up to the best
-accuracy (i.e. aligns with GPS). The cause of this is not understood.
-
-The measured accuracy of Starlink data is a lot worse than GPS, but is still a lot better
-than spoofed GPS, when chartplotters have shown a vessel in the middle of the desert traveling
-at 20 knots, and a lot better than jammed GPS, where a chartplotter has no GPS position data.
-
-Starlink position seems useful in certain navigation situations, such as keeping out
-of shipping lanes, but not useful in others where really precise position accuracy
-is needed. Use good judgement in deciding whether and when to use Starlink for
-position data.
+If you think you might need to use Starlink location data, test it 
+before you need it.
 
 # Using Starlink position data
 
