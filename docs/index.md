@@ -22,7 +22,7 @@ to bring them up to speed.
 
 The repo from which this documentation is generated as well as the contents
 of this website are licensed under "The Unlicense", reproduced
-[here](LICENSE.html)
+[here](LICENSE_web.html)
 
 # Why is Starlink more resilient in a degraded GPS environment
 
