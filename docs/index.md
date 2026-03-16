@@ -76,8 +76,7 @@ antenna behavior in the face of spoofing differed at times:
 
 - Mini - the smallest unit
 - Gen2 - the original flat, self-orienting antenna
-- Gen3 - the newer, larger antenna that has no motors and is very thin
-- High Performance - looks like a larger version of the Gen2, with a square face
+- Gen3 High Performance
 
 In the absence of spoofing, the Starlink-reported position is more or
 less within 20-30 meters of what GPS reports for all antenna types, both
@@ -90,12 +89,12 @@ their last position. That mode should not be enabled on those antennas.
 A difference in behavior associated with that mode has not been observed
 on the Starlink Mini.
 
-Several boats with Starlink Mini, Gen2, Gen3 and High Performance antennas
+Several boats with Starlink Mini, Gen2, and Gen3 High Performance antennas
 recorded data to a PredictWind DataHub, which was analyzed by PredictWind and
 forms the basis of this description. The table below summarizes the
 findings in various conditions.
 
-| Condition             | Mini  | Gen 2  | High Performance |
+| Condition             | Mini  | Gen 2  | Gen3 High Performance |
 |-----------------------|-------|--------|------------------|
 | Anchor + no spoofing  | Works | Works( | Works            |
 | Anchor + spoofing     | Works | Works (position is live) | FAILS (position frozen) |

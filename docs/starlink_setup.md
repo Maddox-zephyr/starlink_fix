@@ -41,15 +41,9 @@ In the **Starlink location** section there are **two independent options**. Both
 
 ---
 
-### 2. Use Starlink Positioning Exclusively (ENABLE ONLY WHEN NEEDED)
+### 2. Use Starlink Positioning Exclusively
 
-- When enabled, Starlink will **ignore external or assisted GPS inputs**
-- This is **important when navigating in suspected GPS-jammed or spoofed areas**
-- When GPS conditions are normal, this option **does not need to be enabled**
-
-**Recommended usage:**
-- ✅ Enable **only when GPS degradation, jamming, or spoofing is suspected**
-- ❌ Leave disabled during normal operation when GPS is reliable
+- ❌ Leave disabled
 
 ---
 
