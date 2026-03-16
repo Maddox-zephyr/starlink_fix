@@ -96,7 +96,7 @@ findings in various conditions.
 
 | Condition             | Mini  | Gen 2  | Gen3 High Performance |
 |-----------------------|-------|--------|------------------|
-| Anchor + no spoofing  | Works | Works( | Works            |
+| Anchor + no spoofing  | Works | Works  | Works            |
 | Anchor + spoofing     | Works | Works (position is live) | FAILS (position frozen) |
 | Underway + no spoofing | Works | Works | Works            |
 | Underway + spoofing   | Works | FAILS  | FAILS(worse)     |
