@@ -16,7 +16,7 @@ This configuration is performed using the official **Starlink mobile app** and i
 3. Scroll to the bottom of the page and tap the **“i” (information)** icon
 4. Scroll down and select **Debug Data**
 5. Scroll to the **Starlink location** section
-6. Enable both options: **Use Startlink positioning exclusively** and **Allow access on local network**
+6. Enable **Allow access on local network**
 
 ![IMAGE: Starlink app – main screen menu (two horizontal lines)](images/Startlink_settings.png)
 

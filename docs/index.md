@@ -42,19 +42,6 @@ The primary reason Starlink is more resilient than GPS in degraded environments 
 
 • Starlink (LEO): These satellites orbit at only 550 km. Because they are roughly 40 times closer, their signals are 1,000 to 10,000 times stronger than GPS. This "loudness" makes Starlink signals much harder to jam or spoof.  
 
-## "Signals of Opportunity" (Passive Navigation)
-Researchers (notably from UT Austin and Ohio State) have successfully used Starlink’s existing
-internet downlink signals for positioning without any help from SpaceX. This is known as
-opportunistic positioning.
-  
-• Doppler Shift: Because Starlink satellites move very fast across the sky (completing an orbit
-in ~90 minutes), receivers can measure the "Doppler shift" (the change in frequency as the
-satellite passes over). By tracking several satellites, a receiver can calculate its location.
- 
-• Accuracy: Current research has achieved accuracy within 6.5 to 30 meters. While not as precise 
-as the sub-meter accuracy of high-end GPS, it is more than enough for drone navigation or 
-maritime travel when GPS is totally blacked out.  
-
 ## Integrated Resilience (SpaceX Official Features)
 SpaceX has begun leaning into this capability officially. In recent FCC filings and military
 tests, they have highlighted:
@@ -65,21 +52,85 @@ errors) and switch to fallback methods to maintain a data connection. 
 
 • Dense Network: With over 6,000 satellites, a Starlink receiver almost always has a direct line-of-sight to multiple "birds." In urban canyons where tall buildings block GPS signals, the sheer density of Starlink makes it much more likely to maintain a lock.
 
-# Starlink position accuracy
+# Starlink antenna type vs spoofing
 
-It is important to understand the accuracy of your navigation system. 
+It is important to understand the accuracy of your navigation system.
+This section is based on experiences of several boats which experienced
+spoofing in the Red Sea Suakin and Port Sudan areas in March of 2026.
 
-Rui has tested the new DataHub software that reads Starlink position
-from a Starlink mini antenna.  Analysis of collected data shows that
-the Starlink-reported position in Starlink-exclusive mode is more or
-less within 20-30 meters of what GPS reports.
+### Spoofing vs Jamming - Degradation types
 
-Bruce (Wild Orchid) has experienced problems of unknown origin with the
-4-year-old Starlink V2 antenna, and performance so far is unacceptable;
-there are regular data freezes. This is a work in progress.
+Spoofing is when a transmitter somewhere sends out GPS data that
+overpowers the weak GPS satellite data and the data is specially
+constructed to cause receivers to report their location as somewhere
+they are not.
+
+Jamming is where the GPS signal is overridden so as to be unavailable
+to receivers - there is no data at the receiver. That condition has not been
+observed. All the information below relates to spoofing.
+
+### Antenna Types
+
+Boats that experienced spoofing used different antenna types, and the
+antenna behavior in the face of spoofing differed at times:
+
+- Mini - the smallest unit
+- Gen2 - the original flat, self-orienting antenna
+- Gen3 - the newer, larger antenna that has no motors and is very thin
+- High Performance - looks like a larger version of the Gen2, with a square face
+
+In the absence of spoofing, the Starlink-reported position is more or
+less within 20-30 meters of what GPS reports for all antenna types, both
+when at anchor and in motion. Errors increase when a boat is in motion
+but stay broadly within this range.
+
+It has been determined that setting "Use Starlink Exclusively" mode causes
+Gen2, Gen3 and High Performance antennas to freeze and continuously emit
+their last position. That mode should not be enabled on those antennas.
+A difference in behavior associated with that mode has not been observed
+on the Starlink Mini.
+
+Several boats with Starlink Mini, Gen2, Gen3 and High Performance antennas
+recorded data to a PredictWind DataHub, which was analyzed by PredictWind and
+forms the basis of this description. The table below summarizes the
+findings in various conditions.
+
+| Condition             | Mini  | Gen 2  | High Performance |
+|-----------------------|-------|--------|------------------|
+| Anchor + no spoofing  | Works | Works( | Works            |
+| Anchor + spoofing     | Works | Works (position is live) | FAILS (position frozen) |
+| Underway + no spoofing | Works | Works | Works            |
+| Underway + spoofing   | Works | FAILS  | FAILS(worse)     |
+
+Observations while underway in the presence of spoofing suggest that
+spoofing may cause a Gen2 dish to be unable to track
+satellites and to lose connection to the internet.
+
+Anecdotally, THEODORE reported that he actually sailed through an area of
+GPS spoofing near Port Soudan, and used a starlink Mini with the option “Use
+Starlink Positioning Exclusively”.  He said that Starlink position
+reported it had good accuracy under way at 5-6 knots for 50 miles, and
+that its position agreed with GPS once he exited the area of GPS jamming. 
+(Note: Speeds greater than 6 knots may experience less accuracy)
+
+### Fringe Effects
+
+It has been observed that when sailing into a region where spoofing
+is active, a vessel passes through a fringe region where the spoofing signal is
+not strong enough to completely overpower the genuine signal. Receivers
+may alternate between the genuine and the spoofing source, causing
+the reported position to jump between extremes. This could be a sign
+that you should prepare to lose GPS position (and consequently SOG,
+AIS display, etc.)
+
+## Summary
+
+The Starlink Mini antenna is the only type that has demonstrated
+strong resistance to spoofing while underway.
 
 If you think you might need to use Starlink location data, test it 
-before you need it.
+before you need it, and make sure Starlink's position can make it all
+the way through to your navigation system.
 
 # Using Starlink position data
 
@@ -87,10 +138,10 @@ Here are the four major approaches to using Starlink location data.
 
 ### PredictWind Datahub -> Chartplotter or OpenCPN
 
-PredictWind is finalizing a plugin release for their Datahub that can read
+PredictWind has a plugin release for their Datahub that can read
 starlink position information and provide that as a source on a NMEA
 2000 network (or SeatalkNG network). (The Datahub also publishes NMEA0183
-over UDP and TCP on a wifi network.)
+over UDP and TCP on a wifi network.) The plugin
 
 The Datahub converts Starlink location data to NMEA messages and you pipe
 them into a Raymarine chartplotter or OpenCPN.  Use the chartplotter or
@@ -101,21 +152,13 @@ Bruce (Wild Orchid) has tested it on a Raymarine Axiom Pro. Rui (Anne
 Charlotte) has tested it on an older Raymarine E120 (Wide) Classic,
 and also with OpenCPN.
 
-Keep in mind, both Starlink and PredictWind will disavow this a a general
-purpose navigation source, for legal purposes. None of us know for sure how
-well this will work in a real gps degraded or spoofed environment in any
-given configuration. After
-determining that the gps environment is degraded or spoofed, you could
-switch your chartplotter to use the DataHub with starlink. You should
+Keep in mind, both Starlink and PredictWind may disavow this a a general
+purpose navigation source, for legal purposes.
+
+After determining that the gps environment is degraded or spoofed, you could
+switch your chartplotter to use the DataHub with Starlink. You should
 still be extremely vigilant in case the starlink data is not correct
 and switch back to your normal GPS source as soon as it seems stable.
-
-That said, THEODORE reported that he actually sailed through an area of
-GPS spoofing near Port Soudan, and used starlink with the option “Use
-Starlink Positioning Exclusively”.  He said that Starlink position
-reported it had good accuracy under way at 5-6 knots for 50 miles, and
-that its position agreed with GPS once he exited the area of GPS jamming. 
-(Note: Speeds greater than 6 knots may experience less accuracy)
 
 ### Starlink -> Signalk -> OpenCPN
 
@@ -174,11 +217,6 @@ configuration or software installation may be needed.
 Follow the instructions at [this page](starlink_setup.html) to configure your
 Starlink antenna to make its data available on the local network.
 
-On the Starlink location data page in the app, it is crucial to also
-select the option “Use Starlink Positioning Exclusively”, when
-switching to navigate using Starlink position data, otherwise it will
-also be (or could be) affected by the GPS jamming
-
 # Starlink->PredictWind Datahub->Chartplotter or OpenCPN setup
 
 Follow the instructions at [this page](pw_datahub_setup.html) to configure your
@@ -230,5 +268,4 @@ fellow cruisers.
 
 # Future sections
 
-1. Signalk setup
-2. FAQ
+1. FAQ
