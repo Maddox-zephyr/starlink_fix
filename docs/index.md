@@ -52,17 +52,24 @@ errors) and switch to fallback methods to maintain a data connection. 
 
 • Dense Network: With over 6,000 satellites, a Starlink receiver almost always has a direct line-of-sight to multiple "birds." In urban canyons where tall buildings block GPS signals, the sheer density of Starlink makes it much more likely to maintain a lock.
 
-# Starlink antenna type vs spoofing
+# Starlink antenna types and resistance to spoofing
 
 It is important to understand the accuracy of your navigation system.
 This section is based on experiences of several boats which experienced
-spoofing in the Red Sea Suakin and Port Sudan areas in March of 2026.
+spoofing in the Red Sea Suakin and Port Sudan areas in March of 2026. The
+boats all had PredictWind Datahubs, and their recorded logs were analyzed by Luis
+from PredictWind. Full details of how different Starlink antennas performed
+in various spoofing scenarios, and why, are in [Luis' report here](https://api.rdsensing.com/downloads/SLGPS_Validation_Report.pdf)
+
+It is not necessary to have a PredictWind Datahub to take advantage of Starlink's
+resistance to spoofing - several other configurations are described on this
+site that will provide position data for navigation in the face of GPS spoofing.
 
 ### Spoofing vs Jamming - Degradation types
 
 Spoofing is when a transmitter somewhere sends out GPS data that
 overpowers the weak GPS satellite data and the data is specially
-constructed to cause receivers to report their location as somewhere
+constructed to cause receivers to report their position as somewhere
 they are not.
 
 Jamming is where the GPS signal is overridden so as to be unavailable
@@ -72,45 +79,18 @@ observed. All the information below relates to spoofing.
 ### Antenna Types
 
 Boats that experienced spoofing used different antenna types, and the
-antenna behavior in the face of spoofing differed at times:
+antenna behavior in the face of spoofing differed based on antenna type
+and operating conditions:
 
-- Mini - the smallest unit
-- Gen2 - the original flat, self-orienting antenna
-- Gen3 High Performance
+- Mini Gen3 - the smallest, newest, lowest cost unit
+- Gen2 - the original self-orienting antenna or the enhanced fixed antenna
+- Marine High Performance (MHP) Gen3
 
-In the absence of spoofing, the Starlink-reported position is more or
-less within 20-30 meters of what GPS reports for all antenna types, both
-when at anchor and in motion. Errors increase when a boat is in motion
-but stay broadly within this range.
-
-It has been determined that setting "Use Starlink Exclusively" mode causes
-Gen2, Gen3 and High Performance antennas to freeze and continuously emit
+It has been determined that setting "Use Starlink Exclusively" mode can cause
+Gen2 and MHP antennas to freeze and continuously emit
 their last position. That mode should not be enabled on those antennas.
 A difference in behavior associated with that mode has not been observed
 on the Starlink Mini.
-
-Several boats with Starlink Mini, Gen2, and Gen3 High Performance antennas
-recorded data to a PredictWind DataHub, which was analyzed by PredictWind and
-forms the basis of this description. The table below summarizes the
-findings in various conditions.
-
-| Condition             | Mini  | Gen 2  | Gen3 High Performance |
-|-----------------------|-------|--------|------------------|
-| Anchor + no spoofing  | Works | Works  | Works            |
-| Anchor + spoofing     | Works | Works (position is live) | FAILS (position frozen) |
-| Underway + no spoofing | Works | Works | Works            |
-| Underway + spoofing   | Works | FAILS  | FAILS(worse)     |
-
-Observations while underway in the presence of spoofing suggest that
-spoofing may cause a Gen2 dish to be unable to track
-satellites and to lose connection to the internet.
-
-Anecdotally, THEODORE reported that he actually sailed through an area of
-GPS spoofing near Port Soudan, and used a starlink Mini with the option “Use
-Starlink Positioning Exclusively”.  He said that Starlink position
-reported it had good accuracy under way at 5-6 knots for 50 miles, and
-that its position agreed with GPS once he exited the area of GPS jamming. 
-(Note: Speeds greater than 6 knots may experience less accuracy)
 
 ### Fringe Effects
 
@@ -118,14 +98,39 @@ It has been observed that when sailing into a region where spoofing
 is active, a vessel passes through a fringe region where the spoofing signal is
 not strong enough to completely overpower the genuine signal. Receivers
 may alternate between the genuine and the spoofing source, causing
-the reported position to jump between extremes. This could be a sign
-that you should prepare to lose GPS position (and consequently SOG,
-AIS display, etc.)
+the reported position to jump between extremes. This effectively results
+in intermittent spoofing, and antenna performance varies based on type.
 
-## Summary
+It could be a sign that you should prepare to lose GPS position (and
+consequently SOG, AIS display, etc.)
 
-The Starlink Mini antenna is the only type that has demonstrated
+## Summary of findings
+
+In the absence of spoofing, the Starlink-reported position is more or
+less within 20-30 meters of what GPS reports for all antenna types, both
+when at anchor and in motion. Errors increase when a boat is in motion
+but stay broadly within this range.
+
+The table below summarizes the findings in various
+conditions. Intermittent spoofing means the antenna intermittently
+receives good GPS positions, such as in a fringe area as described
+above. Sustained spoofing means the antenna signal is completely
+overwhelmed by the spoofing source.
+
+| Condition                         | Mini  | Gen 2 | MHP   |
+|-----------------------------------|-------|-------|-------|
+| At anchor + no spoofing           | Works | Works | Works |
+| At anchor + spoofing              | Works | Works | Works |
+| Underway + no spoofing            | Works | Works | Works |
+| Underway + intermittent spoofing  | Works | Works | Works |
+| Underway + sustained spoofing     | Works | FAILS | Works |
+
+The Starlink Mini and MHP antennas are the only types that have demonstrated
 strong resistance to spoofing while underway.
+
+Additionally, observations while underway in the presence of spoofing
+suggest that spoofing may cause a Gen2 dish to be unable to track
+satellites and to lose connection to the internet.
 
 If you think you might need to use Starlink location data, test it 
 before you need it, and make sure Starlink's position can make it all
