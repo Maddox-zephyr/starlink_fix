@@ -82,15 +82,17 @@ Boats that experienced spoofing used different antenna types, and the
 antenna behavior in the face of spoofing differed based on antenna type
 and operating conditions:
 
-- Mini Gen3 - the smallest, newest, lowest cost unit
-- Gen2 - the original self-orienting antenna or the enhanced fixed antenna
-- Marine High Performance (MHP) Gen3
+- Mini - the smallest, newest, lowest cost unit
+- Standard - the original actuated antenna or the enhanced non-actuated antenna
+- Performance (Gen2)
 
 It has been determined that setting "Use Starlink Exclusively" mode can cause
-Gen2 and MHP antennas to freeze and continuously emit
+Standard and Performance (Gen2) antennas to freeze and continuously emit
 their last position. That mode should not be enabled on those antennas.
 A difference in behavior associated with that mode has not been observed
 on the Starlink Mini.
+
+The Performance (Gen3) antenna has not been evaluated.
 
 ### Fringe Effects
 
@@ -117,7 +119,7 @@ receives good GPS positions, such as in a fringe area as described
 above. Sustained spoofing means the antenna signal is completely
 overwhelmed by the spoofing source.
 
-| Condition                         | Mini  | Gen 2 | MHP   |
+| Condition                         | Mini  | Standard | Performance (Gen2)   |
 |-----------------------------------|-------|-------|-------|
 | At anchor + no spoofing           | Works | Works | Works |
 | At anchor + spoofing              | Works | Works | Works |
@@ -125,11 +127,11 @@ overwhelmed by the spoofing source.
 | Underway + intermittent spoofing  | Works | Works | Works |
 | Underway + sustained spoofing     | Works | FAILS | Works |
 
-The Starlink Mini and MHP antennas are the only types that have demonstrated
+The Starlink Mini and Performance (Gen2) antennas are the only types that have demonstrated
 strong resistance to spoofing while underway.
 
 Additionally, observations while underway in the presence of spoofing
-suggest that spoofing may cause a Gen2 dish to be unable to track
+suggest that spoofing may cause a standard antenna to be unable to track
 satellites and to lose connection to the internet.
 
 If you think you might need to use Starlink location data, test it 
