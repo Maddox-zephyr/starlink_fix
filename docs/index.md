@@ -237,7 +237,11 @@ to configure Signalk and OpenCPN to use Starlink data.
 # Starlink->Finn's python scripts -> OpenCPN setup
 
 Follow the instructions at [this page](opencpn_setup.html) to configure the
-python scripts to forward Starlink location data to OpenCPN
+python scripts on a **Windows** PC to forward Starlink location data to OpenCPN.
+
+Follow the instructions at [this page](Strarlink_NMEA_setup_guide_Mac.html)
+to configure the python scripts on a **Mac** to forward Starlink location data
+to OpenCPN.
 
 # GPS Loss-Alerting setup
 
