@@ -1,4 +1,18 @@
-# Starlink->OpenCPN setup
+# Starlink Python bridge for Windows
+Versions of this script have, in 2026, guided 60+ boats safely through the Red Sea. Basically, all boats have experienced GPS outages on their journey, but could use Starlink to navigate safely. It has been designed to be easy to use by everyone, and as long as the bridge is running, it can send the Starlink position to all devices in the network. There is both a video and a written tutorial for the setup to make it as easy to use as possible. 
+
+## Get the OpenCPN-Starlink zip file
+
+- Send your browser to the [URL to download the Starlink_data_to_NMEA.zip file](https://github.com/Maddox-zephyr/starlink_position/releases)
+- Under the most recent release, expand the Assets dropdown.
+- Click on the Starlink_data_to_NMEA.zip file to
+download the zip file to your computer
+- Move the file to any place you want on your computer and unzip it into a folder.
+
+## Video Setup
+[This video tutorial is the easiest way to understand the setup process](https://youtu.be/vWmSpZMmEbg)
+
+## Starlink->OpenCPN or Navionics setup
 
 Using OpenCPN with Starlink involves setting up a bridge
 that forwards Starlink's location data to OpenCPN.
@@ -15,40 +29,18 @@ Make sure you have python installed (a quick google search should help)
 Make sure you have enabled location access on the Starlink antenna by
 following the steps on [this page](https://maddox-zephyr.github.io/starlink_position/starlink_setup.html)
 
-## Get the OpenCPN-Starlink zip file
+## Start the Starlink data bridge software
 
-- Send your browser to the [URL to download the Starlink_data_to_NMEA.zip file](https://github.com/Maddox-zephyr/starlink_position/releases)
-- Under the most recent release, expand the Assets dropdown.
-- Click on the Starlink_data_to_NMEA.zip file to
-download the zip file to your computer
-- Move the file to any place you want on your computer and unzip it into a folder.
-
-## Configure the Starlink->OpenCPN bridge software
-
-- Open PowerShell. (You can search for PowerShell on your
-computer - it should be pre-installed.)
-- **cd** into the starlink-grpc-tools-main folder that is inside
-the Starlink_data_to_NMEA folder by entering the path
-to the folder into powershell like so:
+- Open the unzipped Starlink_data_to_NMEA folder and find the 
 ```
-cd C:\Users\...Starlink_data_to_NMEA\starlink-grpc-tools-main
+Run_Starlink_Bridge_windows.bat
 ```
-- Install the dependencies by entering the following command into Powershell:
-```
-python -m pip install -r requirements.txt
-```
-- Open the Starlink_data_to_NMEA.py file using any editor (e.g. Notepad, IDLE, etc)
-- Check that all settings match your needs. Specifically check that your UDP_IP
-is on the right IP Submask. Your first three numbers are correct.
-You can find your ip submask in your starlinks settings.
-The last number should always be 255.
-Once complete it should look something like 192.168.1.255
+file. Double-click on the file. 
 
-## Run the Starlink->OpenCPN bridge
-
-- **FIXME** Run the Starlink_data_to_NMEA.py file.
-You can do this if you opened it
-in IDLE. It should tell you that it sends positions
+-The script should install the dependencies and then start transmitting data, looking something like this:
+```
+Sent: 35.1971, 25.7165 | SOG: 0.0kn, COG: 0°
+```
 
 # Setup OPENCPN
 
