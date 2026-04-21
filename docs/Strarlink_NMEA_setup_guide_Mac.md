@@ -6,7 +6,7 @@ Make sure you have **python** installed or find and install it. A quick google s
 
 
 
-**Allow local location access in Starlink.**
+# **Allow local location access in Starlink.**
 
  	You can enable location access by clicking the two bars at the top left corner in the app, then the info mark on the bottom right. You should be 	able to find the Debug data section and enable it from there. You can check if it works by typing 192.168.100.1 into the url bar in any browser. 	It should display the Debug data and amongst it the Location.
 
@@ -19,7 +19,7 @@ Make sure you have **python** installed or find and install it. A quick google s
 
 
 
-
+## Install the script
 Download the **Starlink\_Data\_to\_NMEA\_mac.Zip** folder to any place you want and unzip it.
 
  	dont move files around, the Programm is expecting files to be in certain places. 
@@ -36,7 +36,9 @@ Open the **Starlink\_Data\_to\_NMEA** folder
 
 &nbsp;		open **terminal** (it is pre installed on your mac)
 
-&nbsp;			type **python3 -m pip install -r** (drag and drop your requirements.txt file behind the r) and press enter
+&nbsp;			type 
+``` python3 -m pip install -r ``` 
+(drag and drop your requirements.txt file behind the r) and press enter
 
 &nbsp;			It should now install all requirements.
 
